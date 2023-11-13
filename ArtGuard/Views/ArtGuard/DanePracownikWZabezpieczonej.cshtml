@@ -1,0 +1,42 @@
+﻿@model ArtGuard.Infrastracture.Domain.KartaDostepu
+
+@{
+    ViewData["Title"] = "DanePracownika";
+}
+
+<h1>DanePracownika</h1>
+
+<div>
+    <h4>KartaDostepu</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumerKarty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumerKarty)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

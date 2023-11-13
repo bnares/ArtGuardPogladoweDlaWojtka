@@ -1,0 +1,176 @@
+﻿@using ArtGuard.Infrastracture.Domain
+@model Dictionary<string, List<KartaDostepu>>
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="4">
+                <h3>Strefa Zewnetrzna</h3>
+            </th>
+        </tr>
+        <tr>
+            <th>Nr Karty</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in (ViewData["stanOsobWBudynku"]!=null ? ( List<KartaDostepu>)ViewData["stanOsobWBudynku"] : Model["zewnetrzna"]))
+        {
+       
+        <tr>
+            <td>@item.NumerKarty</td>
+            <td>@item.Imie</td>
+            <td>
+                @item.Nazwisko
+                
+            </td>
+            <td>
+                    <a asp-action="DanePracownikWZewnetrznej" class="btn btn-info" asp-route-id=@item.Id>Info</a>
+                    <a asp-action="UsunPracownikaZZewnetrzna" class="btn btn-danger" asp-route-id=@item.Id>Usun</a>
+                    <a asp-action="DodajPracownikaZZwnatrzDoTransakcji" class="btn btn-primary" asp-route-id=@item.Id>Dodaj Transakcja</a>
+                    
+            </td>
+        </tr>
+    }
+    
+        <tr>
+            <td><b>SUMA Pracownikow:</b></td>
+            <td >@Model["zewnetrzna"].Count</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="4">
+                <h3>Strefa Operacyjna</h3>
+            </th>
+        </tr>
+        <tr>
+            <th>Nr Karty</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model["operacyjna"])
+        {
+
+            <tr>
+                <td>@item.NumerKarty</td>
+                <td>@item.Imie</td>
+                <td>
+                    @item.Nazwisko
+
+                </td>
+                <td>
+                    <a asp-action="DanePracownikWOperacyjnej" class="btn btn-info" asp-route-id=@item.Id>Info</a>
+                    <a asp-action="UsunPracownikaZOperacyjna" asp-controller="ArtGuard" class="btn btn-danger" asp-route-id=@item.Id>Usun</a>
+                    <a asp-action="DodajPracownikaZOperacjiDoZabezpieczonej" asp-controller="ArtGuard" class="btn btn-primary" asp-route-id=@item.Id>Do Zabezpieczonej</a>
+                </td>
+            </tr>
+        }
+        
+        <tr>
+            <td><b>SUMA Pracownikow:</b></td>
+            <td >@Model["operacyjna"].Count</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="4">
+                <h3>Strefa Zabezpieczona</h3>
+            </th>
+        </tr>
+        <tr>
+            <th>Nr Karty</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in  Model["zabezpieczona"])
+        {
+
+            <tr>
+                <td>@item.NumerKarty</td>
+                <td>@item.Imie</td>
+                <td>
+                    @item.Nazwisko
+
+                </td>
+                <td>
+                    <a asp-action="DanePracownikWZabezpieczonej" class="btn btn-info" asp-route-id=@item.Id>Info</a>
+                    <a asp-action="UsunPracownikaZZabezpieczona" class="btn btn-danger" asp-route-id=@item.Id>Usun</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td><b>SUMA Pracownikow:</b></td>
+            <td>@Model["zabezpieczona"].Count</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="4">
+                <h3>Strefa Transakcji</h3>
+            </th>
+        </tr>
+        <tr>
+            <th>Nr Karty</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model["transakcji"])
+        {
+
+            <tr>
+                <td>@item.NumerKarty</td>
+                <td>@item.Imie</td>
+                <td>
+                    @item.Nazwisko
+
+                </td>
+                <td>
+                    <a asp-action="DanePracownikWTransakcji" class="btn btn-info" asp-route-id=@item.Id>Info</a>
+                    <a asp-action="UsunPracownikaZTransakcyjna" class="btn btn-danger" asp-route-id=@item.Id>Usun</a>
+                    <a asp-action="DodajPracownikaZTransakcjiDoOperacji" class="btn btn-primary" asp-route-id=@item.Id>Do Operacji</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td><b>SUMA Pracownikow:</b></td>
+            <td >@Model["transakcji"].Count</td>
+        </tr>
+    </tbody>
+</table>
